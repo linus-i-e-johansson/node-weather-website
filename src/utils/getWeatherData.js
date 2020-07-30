@@ -5,6 +5,7 @@ const getWeatherData = (lat, long, callback) => {
     lat
   )},${encodeURIComponent(long)}`;
   request({ url, json: true }, (error, { body }) => {
+    console.log(body);
     if (error) {
       callback("Unable to connect to weather service", undefined);
     } else if (body.error) {
@@ -15,6 +16,8 @@ const getWeatherData = (lat, long, callback) => {
         temprature: body.current.temperature,
         feelsLike: body.current.feelslike,
         precip: body.current.precip,
+        weatherIcon: body.current.weather_icons[0],
+        humidity: body.current.humidity,
       });
     }
   });

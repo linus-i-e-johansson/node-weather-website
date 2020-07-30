@@ -19,7 +19,8 @@ weatherForm.addEventListener("submit", (e) => {
         messageTwo.textContent = ` 
             The temprature is ${data.temprature} 
             but feels like ${data.feelslike}
-            and there is ${data.precip} % chance for rain`;
+            and there is ${data.precip} % chance for rain
+            with a humidity of ${data.humidity} %`;
       }
     });
   });

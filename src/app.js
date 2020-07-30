@@ -23,7 +23,7 @@ app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
     name: "Linus Johansson",
-    message: "This is the homepage.",
+    message: "Find out the forecast for your city.",
   });
 });
 
@@ -54,17 +54,23 @@ app.get("/weather", (req, res) => {
     if (error) {
       return res.send(error);
     }
-    getWeatherData(lat, long, (error, { temprature, feelsLike, precip }) => {
-      if (error) {
-        return res.send(error);
+    getWeatherData(
+      lat,
+      long,
+      (error, { temprature, feelsLike, precip, weatherIcon, humidity }) => {
+        if (error) {
+          return res.send(error);
+        }
+        res.send({
+          location: location,
+          temprature: temprature,
+          feelslike: feelsLike,
+          precip: precip,
+          weatherIcon: weatherIcon,
+          humidity: humidity,
+        });
       }
-      res.send({
-        location: location,
-        temprature: temprature,
-        feelslike: feelsLike,
-        precip: precip,
-      });
-    });
+    );
   });
 });
 
